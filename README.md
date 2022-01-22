@@ -30,4 +30,4 @@ root                    (project root folder)
 
 ## Authors
 ---
-* Douglas DeMille, Haingotiana N Rambikarison (CSE 210 Thur 11a Group)
+* Douglas DeMille, Haingotiana N Rambikarison, Jonathan Trok (CSE 210 Thur 11a Group)
