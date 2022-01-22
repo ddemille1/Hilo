@@ -1,5 +1,5 @@
 # HiLo
-Guessing game is always exciting. Why not test your luck at HiLo game and see how far you can go?  300 points is given to you to start the game. A first card value is drawn randomly for you. Then you continue by answering if you want to keep playing by answering yes or no. Guess if the value of the next card is higher or lower than the previous one. If you get the answer right, you will be awarded 100 points, if you lose, your actual point is deducted 75 points. If you choose to end the game, answer no. Be careful! If your point reaches 0, the game is over.
+Guessing game is always exciting. Why not test your luck at HiLo game and see how far you can go?  300 points is given to you to start the game. A first card value is drawn randomly for you. Then you continue by answering yes or no to the question if you want to keep playing. Guess if the value of the next card is higher or lower than the previous one. If you get the answer right, you will be awarded 100 points, if you lose, your actual point is deducted 75 points. If you choose to end the game, answer no. Be careful! If your point reaches 0, the game is over.
 
 ## Getting Started
 ---
