@@ -67,10 +67,9 @@ class Director:
     
     
     
-    
     """Things should be good up to here"""
     
-    def calculate_points(value, next_value, choice):
+    def calculate_points(self, value, next_value, choice):
         """calculates the points earned this round.
         
         Arguments: 
@@ -82,9 +81,9 @@ class Director:
             
             choice: the players choice if the next card will be higher or lower than the first card."""
     points = 0
-    value 
+ 
     if value > next_value and choice == 'h':
-        points = 
+        points = -75
 """Methods: 
   
         
