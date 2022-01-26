@@ -6,6 +6,10 @@ class Director:
     The responsibility of a Director is to control the sequence of play.
 
     Attributes: 
+        value: the number on the first card in the round
+
+        next_value: the number on the next card in the round.
+
         points: how many points the player has aquired during game play. It will start at 300.
         
         is_playing: a boolean variable. True means still playing, False means not playing.
@@ -21,6 +25,7 @@ class Director:
         
         card = Card()
         self.value = card.draw()
+        self.next_value = 0
         self.points = 300
         self.is_playing = True
         self.choice = ''
@@ -30,6 +35,7 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
+        
         while (self.is_playing == True and self.points > 0):
             self.display_current_card()
             self.get_choice()
@@ -68,15 +74,7 @@ class Director:
         """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong.
         
         Arguments: 
-            self (Director): an instance of Director
-
-            points: The number of points the player currently has
-            
-            value: the value of the first card
-            
-            next_value: the value of the next card
-            
-            choice: the players choice if the next card will be higher or lower than the first card."""
+            self (Director): an instance of Director"""
  
         if self.value > self.next_value and self.choice == 'h':
             self.points = self.points - 75
@@ -96,18 +94,23 @@ class Director:
 
 
     def display_output(self):
-        """display_output: displays updated points, asks if playing again, resets value to current,value (so next round will start out using previous rounds new card)"""
-        #self.value = value
-        #self.is_playing = is_playing
+        """display_output: displays updated points, asks if playing again, resets value to current,value (so next round will start out using previous rounds new card)
+        
+        Arguments: 
+            self (Director): an instance of Director"""
+        
 
         print(f'Your score is: {self.points}')
         play_again = input('Play again? [y/n] ')
         print('')
         if play_again == 'y':
             self.is_playing = True
+            self.value = self.next_value
             return
+        
         if play_again == 'n':
             self.is_playing = False
             return
         
-        self.value = self.current_value
+        
+        
