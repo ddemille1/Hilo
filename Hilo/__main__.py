@@ -2,6 +2,7 @@ from pickle import TRUE
 from gameClasses.director import Director
 
 director = Director()
+
 current_score = director.start_game() 
 while current_score >= 0:
     if not director.get_input():
@@ -12,3 +13,5 @@ while current_score >= 0:
 
 
 """End the game displaying score and a message if you won or lost"""
+
+director.start_game()
