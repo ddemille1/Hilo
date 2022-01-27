@@ -32,4 +32,7 @@ class Card:
 
         self.value = random.randint(1, 13)
         return self.value
+<<<<<<< HEAD
         
+=======
+>>>>>>> 6b1a27fbbbe9e637e203e5f05dcb77fa5d880c7a
