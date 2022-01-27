@@ -13,7 +13,7 @@ class Card:
             return: card_value
             """
 
-        """value: This is the face value of the card from 1-13"""
+    """value: This is the face value of the card from 1-13"""
 
     def __init__(self):    
         """Constructs a new instance of Die with a value attribute.
