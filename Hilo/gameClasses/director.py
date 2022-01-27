@@ -58,8 +58,9 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-
-        self.choice = input('Higher or lower? [h/l] ')
+        self.choice = input('Higher or lower? [h/l] ').lower()
+        while self.choice != "h" and self.choice != "l":
+            self.choice = input('Invalid choice. Higher or lower? [h/l] ').lower()
 
     def display_next_card(self):
         """Gets new card from card object
@@ -101,7 +102,9 @@ class Director:
         
 
         print(f'Your score is: {self.points}')
-        play_again = input('Play again? [y/n] ')
+        play_again = input('Play again? [y/n] ').lower()
+        while play_again != "y" and play_again != "n":
+            play_again = input('Invalid choice. Play again? [y/n] ').lower()
         print('')
         if play_again == 'y':
             self.is_playing = True
