@@ -75,22 +75,33 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
- 
-        if self.value > self.next_value and self.choice == 'h':
-            self.points = self.points - 75
-            return
 
-        if self.value < self.next_value and self.choice == 'h':
-            self.points = self.points + 100
-            return
+        if self.choice == "h":
+                if self.next_value > self.value:
+                    self.points += 100
+                else:
+                    self.points -= 75
+        elif self.choice == "l":
+                if self.next_value < self.value:
+                    self.points += 100
+                else:
+                    self.points -=75
+        
+        # if self.value > self.next_value and self.choice == 'h':
+        #     self.points = self.points - 75
+        #     return
 
-        if self.value > self.next_value and self.choice == 'l':
-            self.points = self.points + 100
-            return
+        # if self.value < self.next_value and self.choice == 'h':
+        #     self.points = self.points + 100
+        #     return
 
-        if self.value < self.next_value and self.choice == 'l':
-            self.points = self.points - 75
-            return
+        # if self.value > self.next_value and self.choice == 'l':
+        #     self.points = self.points + 100
+        #     return
+
+        # if self.value < self.next_value and self.choice == 'l':
+        #     self.points = self.points - 75
+        #     return
 
 
     def display_output(self):
