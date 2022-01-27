@@ -14,19 +14,40 @@ class Director:
         
         is_playing: a boolean variable. True means still playing, False means not playing.
         
-        choice: If the player has chosen the next card to be higher lower than the current card.
+        choice: If the player has chosen the next card to be higher or lower than the current card.
+    
+        win: 100 points
+
+        loser: -75 points
+
+    Methods:
+        start_game: Draw inatial card. Display_output.
+        return points
         
+        get_input: gets 'is_playing' and 'choice' from user.
+            return: is_playing
+
+        take_turn: draw a new card, compare to provious card to choice. 
+            return: win or lose
+
+        update_score: updates points from win or lose. 
+
+        display_output: displays new card, displays updated points.
+        return: points
         """
+
+   
     def __init__(self):
         """Constructs a new director.
         
         Arguments: 
             self (Director): an instance of Director"""
         
+        self.initial_stake = 300
         card = Card()
         self.value = card.draw()
         self.next_value = 0
-        self.points = 300
+        self.points = self.initial_stake
         self.is_playing = True
         self.choice = ''
         
@@ -35,14 +56,22 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-        
+        print(f"Your starting score is: {self.points}")
         while (self.is_playing == True and self.points > 0):
             self.display_current_card()
             self.get_choice()
             self.display_next_card()
             self.calculate_points()
             self.display_output()
+        
+        print('Game over. Thanks for playing.')
+        if self.points < self.initial_stake:
+            loss = self.initial_stake - self.points
+            print (f"You lost {loss}. Better luck next time.")
 
+        else:
+            gain = self.points - self.initial_stake
+            print(f"Congratulations, you won {gain}.")
     
     
     def display_current_card(self):
@@ -74,7 +103,7 @@ class Director:
         """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong.
         
         Arguments: 
-            self (Director): an instance of Director"""
+            self (Director): an instance of Director """
  
         if self.value > self.next_value and self.choice == 'h':
             self.points = self.points - 75
@@ -84,33 +113,4 @@ class Director:
             self.points = self.points + 100
             return
 
-        if self.value > self.next_value and self.choice == 'l':
-            self.points = self.points + 100
-            return
-
-        if self.value < self.next_value and self.choice == 'l':
-            self.points = self.points - 75
-            return
-
-
-    def display_output(self):
-        """display_output: displays updated points, asks if playing again, resets value to current,value (so next round will start out using previous rounds new card)
-        
-        Arguments: 
-            self (Director): an instance of Director"""
-        
-
-        print(f'Your score is: {self.points}')
-        play_again = input('Play again? [y/n] ')
-        print('')
-        if play_again == 'y':
-            self.is_playing = True
-            self.value = self.next_value
-            return
-        
-        if play_again == 'n':
-            self.is_playing = False
-            return
-        
-        
-        
+        '''display_output: displays new card, displays updated points.'''
