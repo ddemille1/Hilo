@@ -33,3 +33,4 @@ class Card:
         self.value = random.randint(1, 13)
         return self.value
         
+
