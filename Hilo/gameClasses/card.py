@@ -1,12 +1,26 @@
+import random
+
 class Card:
-    """This is where we create the card object
+    """The responsibilty of this class is to give the director a random card.
     
     Attributes:
-        card_value: This is the face value of the card from 1-13
+        value: This is the face value of the card from 1-13"""
+
+    def __init__(self):    
+        """Constructs a new instance of Die with a value attribute.
         
-    Methods:
-        value: return the value of the last card drawn. (card_value)
+        Args:
+            self (Die): An instance of Die."""
+
+        self.value = 0
+
         
-        draw: This generates the random value from 1-13, stores in card value. 
-            return: card_value
-            """
+    def draw(self):
+        """Generates a new random value.
+        
+        Args:
+            self (Die): An instance of Die."""
+
+        self.value = random.randint(1, 13)
+        return self.value
+        
