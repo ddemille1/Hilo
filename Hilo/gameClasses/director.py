@@ -6,6 +6,10 @@ class Director:
     The responsibility of a Director is to control the sequence of play.
 
     Attributes: 
+        value: the number on the first card in the round
+
+        next_value: the number on the next card in the round.
+
         points: how many points the player has aquired during game play. It will start at 300.
         
         is_playing: a boolean variable. True means still playing, False means not playing.
@@ -31,14 +35,19 @@ class Director:
         display_output: displays new card, displays updated points.
         return: points
         """
+
+   
     def __init__(self):
         """Constructs a new director.
         
         Arguments: 
             self (Director): an instance of Director"""
         
-        self.points = 0
-        self.is_playing: True
+        card = Card()
+        self.value = card.draw()
+        self.next_value = 0
+        self.points = 300
+        self.is_playing = True
         self.choice = ''
         
     def start_game(self):
@@ -46,11 +55,12 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-        while self.is_playing == True:
+        
+        while (self.is_playing == True and self.points > 0):
             self.display_current_card()
             self.get_choice()
             self.display_next_card()
-            self.assign_points()
+            self.calculate_points()
             self.display_output()
 
     
@@ -60,9 +70,8 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-        card = Card()
-        value = card.value
-        print(f'The card is: {value}')
+        
+        print(f'The card is: {self.value}')
 
     def get_choice(self):    
         """Gets 'choice' from user.
@@ -78,36 +87,21 @@ class Director:
         Arguments: 
             self (Director): an instance of Director"""
         next_card = Card()
-        next_value = next_card.value
-        print(f'Next card was: {next_value}')
- 
+        self.next_value = next_card.draw()
+        print(f'Next card was: {self.next_value}')
     
-    
-    
-    
-    """Things should be good up to here"""
-    
-    def calculate_points(self, value, next_value, choice):
-        """calculates the points earned this round.
+    def calculate_points(self):
+        """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong.
         
         Arguments: 
-            self (Director): an instance of Director
-            
-            value: the value of the first card
-            
-            next_value: the value of the next card
-            
-            choice: the players choice if the next card will be higher or lower than the first card."""
-    points = 0
+            self (Director): an instance of Director """
  
-    if value > next_value and choice == 'h':
-        points = -75
-"""Methods: 
-  
-        
-        calculate_points: This assigns 100 points if the player was correct in guessing if the new card was higher or lower than the previous card.     
-            Arguments: are value (from the card's attributes) and is_playing (from the director's attribures)
+        if self.value > self.next_value and self.choice == 'h':
+            self.points = self.points - 75
+            return
 
-            return: points
+        if self.value < self.next_value and self.choice == 'h':
+            self.points = self.points + 100
+            return
 
-        display_output: displays new card, displays updated points."""
+        '''display_output: displays new card, displays updated points.'''
