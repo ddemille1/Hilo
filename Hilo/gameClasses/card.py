@@ -12,8 +12,6 @@ class Card:
         draw: This generates the random value from 1-13, stores in card value. 
             return: card_value
             """
-<<<<<<< HEAD
-=======
 
         """value: This is the face value of the card from 1-13"""
 
@@ -35,5 +33,3 @@ class Card:
         self.value = random.randint(1, 13)
         return self.value
         
-
->>>>>>> 94aaf0a79292925d7361e5b686c583d798834fdd
