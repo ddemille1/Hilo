@@ -23,10 +23,11 @@ class Director:
         Arguments: 
             self (Director): an instance of Director"""
         
+        self.initial_stake = 300
         card = Card()
         self.value = card.draw()
         self.next_value = 0
-        self.points = 300
+        self.points = self.initial_stake
         self.is_playing = True
         self.choice = ''
         
@@ -35,14 +36,22 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-        
+        print(f"Your starting score is: {self.points}")
         while (self.is_playing == True and self.points > 0):
             self.display_current_card()
             self.get_choice()
             self.display_next_card()
             self.calculate_points()
             self.display_output()
+        
+        print('Game over. Thanks for playing.')
+        if self.points < self.initial_stake:
+            loss = self.initial_stake - self.points
+            print (f"You lost {loss}. Better luck next time.")
 
+        else:
+            gain = self.points - self.initial_stake
+            print(f"Congratulations, you won {gain}.")
     
     
     def display_current_card(self):
