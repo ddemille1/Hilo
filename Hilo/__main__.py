@@ -1,3 +1,4 @@
+from pickle import TRUE
 from gameClasses.director import Director
 
 director = Director()

@@ -14,7 +14,7 @@ class Director:
         
         is_playing: a boolean variable. True means still playing, False means not playing.
         
-        choice: If the player has chosen the next card to be higher lower than the current card.
+        choice: If the player has chosen the next card to be higher or lower than the current card.
         
         """
     def __init__(self):
@@ -23,10 +23,11 @@ class Director:
         Arguments: 
             self (Director): an instance of Director"""
         
+        self.initial_stake = 300
         card = Card()
         self.value = card.draw()
         self.next_value = 0
-        self.points = 300
+        self.points = self.initial_stake
         self.is_playing = True
         self.choice = ''
         
@@ -35,14 +36,22 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-        
+        print(f"Your starting score is: {self.points}")
         while (self.is_playing == True and self.points > 0):
             self.display_current_card()
             self.get_choice()
             self.display_next_card()
             self.calculate_points()
             self.display_output()
+        
+        print('Game over. Thanks for playing.')
+        if self.points < self.initial_stake:
+            loss = self.initial_stake - self.points
+            print (f"You lost {loss}. Better luck next time.")
 
+        else:
+            gain = self.points - self.initial_stake
+            print(f"Congratulations, you won {gain}.")
     
     
     def display_current_card(self):
@@ -58,8 +67,9 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
-
-        self.choice = input('Higher or lower? [h/l] ')
+        self.choice = input('Higher or lower? [h/l] ').lower()
+        while self.choice != "h" and self.choice != "l":
+            self.choice = input('Invalid choice. Higher or lower? [h/l] ').lower()
 
     def display_next_card(self):
         """Gets new card from card object
@@ -75,22 +85,33 @@ class Director:
         
         Arguments: 
             self (Director): an instance of Director"""
- 
-        if self.value > self.next_value and self.choice == 'h':
-            self.points = self.points - 75
-            return
 
-        if self.value < self.next_value and self.choice == 'h':
-            self.points = self.points + 100
-            return
+        if self.choice == "h":
+                if self.next_value > self.value:
+                    self.points += 100
+                else:
+                    self.points -= 75
+        elif self.choice == "l":
+                if self.next_value < self.value:
+                    self.points += 100
+                else:
+                    self.points -=75
+        
+        # if self.value > self.next_value and self.choice == 'h':
+        #     self.points = self.points - 75
+        #     return
 
-        if self.value > self.next_value and self.choice == 'l':
-            self.points = self.points + 100
-            return
+        # if self.value < self.next_value and self.choice == 'h':
+        #     self.points = self.points + 100
+        #     return
 
-        if self.value < self.next_value and self.choice == 'l':
-            self.points = self.points - 75
-            return
+        # if self.value > self.next_value and self.choice == 'l':
+        #     self.points = self.points + 100
+        #     return
+
+        # if self.value < self.next_value and self.choice == 'l':
+        #     self.points = self.points - 75
+        #     return
 
 
     def display_output(self):
@@ -101,7 +122,9 @@ class Director:
         
 
         print(f'Your score is: {self.points}')
-        play_again = input('Play again? [y/n] ')
+        play_again = input('Play again? [y/n] ').lower()
+        while play_again != "y" and play_again != "n":
+            play_again = input('Invalid choice. Play again? [y/n] ').lower()
         print('')
         if play_again == 'y':
             self.is_playing = True
