@@ -15,8 +15,21 @@ class Director:
         is_playing: a boolean variable. True means still playing, False means not playing.
         
         choice: If the player has chosen the next card to be higher or lower than the current card.
+
         
+        get_input: gets 'is_playing' and 'choice' from user.
+            return: is_playing
+
+        take_turn: draw a new card, compare to provious card to choice. 
+            return: win or lose
+
+        update_score: updates points from win or lose. 
+
+        display_output: displays new card, displays updated points.
+        return: points
         """
+
+   
     def __init__(self):
         """Constructs a new director.
         
@@ -84,7 +97,8 @@ class Director:
         """calculates the points earned this round. Adds 100 points if player guessed correctly if the next card was higher or lower than the previous card. Deducts 75 points from players score if the player guessed wrong.
         
         Arguments: 
-            self (Director): an instance of Director"""
+
+            self (Director): an instance of Director
 
         if self.choice == "h":
                 if self.next_value > self.value:
@@ -96,22 +110,6 @@ class Director:
                     self.points += 100
                 else:
                     self.points -=75
-        
-        # if self.value > self.next_value and self.choice == 'h':
-        #     self.points = self.points - 75
-        #     return
-
-        # if self.value < self.next_value and self.choice == 'h':
-        #     self.points = self.points + 100
-        #     return
-
-        # if self.value > self.next_value and self.choice == 'l':
-        #     self.points = self.points + 100
-        #     return
-
-        # if self.value < self.next_value and self.choice == 'l':
-        #     self.points = self.points - 75
-        #     return
 
 
     def display_output(self):
@@ -136,4 +134,4 @@ class Director:
             return
         
         
-        
+       
