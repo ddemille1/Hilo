@@ -98,7 +98,7 @@ class Director:
         
         Arguments: 
 
-            self (Director): an instance of Director
+            self (Director): an instance of Director"""
 
         if self.choice == "h":
                 if self.next_value > self.value:
